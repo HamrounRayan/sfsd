@@ -1,6 +1,6 @@
 #include "TOF.h"
 
-void tof_open( tof **f , char *name , char mode){
+void tof_open( tof **f , char *name , char mode ){
     *f = malloc( sizeof(tof) );
     if (mode == 'E'){
         (*f)->f = fopen(name, "rb+");
