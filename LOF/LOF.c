@@ -22,16 +22,16 @@ void lof_close(lof *f){
     free(f);
 };
 
-void read_bloc_lof(lof *f,int i,block *buf)
+void lof_readblock(lof *f,int i,block *buffer)
 {
-    fseek((*f).f,i*sizeof(*buf)+sizeof(header),SEEK_SET);
-    fread(buf,sizeof(*buf),1,(*f).f);
+    fseek(f->f, sizeof(header) + (i - 1) * sizeof(block), SEEK_SET);
+    fread(buffer, sizeof(block), 1, f->f);
 }
 
-void write_bloc_lof(lof *f,int i,block *buf)
+void lof_writeblock(lof *f,int i,block *buffer)
 {
-    fseek((*f).f,i*sizeof(*buf)+sizeof(block),SEEK_SET);
-    fwrite(buf,sizeof(*buf),1,(*f).f);
+    fseek(f->f, sizeof(header) + (i - 1) * sizeof(block), SEEK_SET);
+    fwrite(buffer, sizeof(block), 1, f->f);
 }
 
 int get_header_lof(lof *f, int i)
