@@ -3,11 +3,11 @@
 void lof_open( lof **f, char *name, char mode ){
     *f = malloc( sizeof(lof) );
     if (mode == 'E'){
-        (*f)->f = fopen(name, 'rb+');
+        (*f)->f = fopen(name, "rb+");
         fread(&((*f)->h), sizeof(header), 1, (*f)->f);
     }
     if (mode == 'N'){
-        (*f)->f = fopen(name, 'wb+');
+        (*f)->f = fopen(name, "wb+");
         (*f)->h.head = -1;
         (*f)->h.newblock = -1;
         (*f)->h.freeblock = -1;
